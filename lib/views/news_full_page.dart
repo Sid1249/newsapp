@@ -13,15 +13,18 @@ class NewsFullView extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: implement build
     return Scaffold(
-      appBar: AppBar(backgroundColor: primaryColor, leading: InkWell(
-        onTap: () {
-          Navigator.pop(context);
-        },
-        child: Icon(
-          Icons.arrow_back_ios,
-          color: Colors.white,
+      appBar: AppBar(
+        backgroundColor: primaryColor,
+        leading: InkWell(
+          onTap: () {
+            Navigator.pop(context);
+          },
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.white,
+          ),
         ),
-      ),),
+      ),
       body: SafeArea(
         child: Container(
           child: Column(
@@ -29,25 +32,16 @@ class NewsFullView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: MediaQuery
-                    .of(context)
-                    .size
-                    .height * 0.32,
-                width: MediaQuery
-                    .of(context)
-                    .size
-                    .width,
+                height: MediaQuery.of(context).size.height * 0.29,
+                width: MediaQuery.of(context).size.width,
                 child: Stack(
                   children: [
-
                     Container(
-                        width: MediaQuery
-                            .of(context)
-                            .size
-                            .width,
-
+                        width: MediaQuery.of(context).size.width,
                         child: Image.network(
-                          articles.urlToImage, fit: BoxFit.fitWidth,)),
+                          articles.urlToImage,
+                          fit: BoxFit.fill,
+                        )),
                     Align(
                         alignment: Alignment.bottomLeft,
                         child: Container(
@@ -57,43 +51,50 @@ class NewsFullView extends StatelessWidget {
                                 color: Colors.grey.withOpacity(0.3),
                                 spreadRadius: 5,
                                 blurRadius: 7,
-                                offset: Offset(
-                                    0, 3), // changes position of shadow
+                                offset:
+                                    Offset(0, 3), // changes position of shadow
                               ),
                             ],
                           ),
                           child: Text(
                             articles.title,
-                            style: TextStyle(fontSize: 22,
+                            style: TextStyle(
+                              fontSize: 20,
                               fontWeight: FontWeight.w700,
-                              color: Colors.white,),
+                              color: Colors.white,
+                            ),
                             textAlign: TextAlign.left,
-
                           ),
                         )),
                   ],
                 ),
-
               ),
-
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.start,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    SizedBox(height: 10,),
-                    Text(articles.source.name, style: TextStyle(
-                        fontWeight: FontWeight.bold, fontSize: 19),),
-                    SizedBox(height: 5,),
-
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Text(
+                      articles.source.name,
+                      style:
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
+                    ),
+                    SizedBox(
+                      height: 5,
+                    ),
                     Text(getFormattedDateString(
                         DateTime.parse(articles.publishedAt))),
-                    SizedBox(height: 20,),
-
+                    SizedBox(
+                      height: 20,
+                    ),
                     Text(articles.content ?? articles.description),
-                    SizedBox(height: 20,),
-
+                    SizedBox(
+                      height: 20,
+                    ),
                     GestureDetector(
                       onTap: () {
                         _launchURL(context);
@@ -102,16 +103,20 @@ class NewsFullView extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Text("Seee Full Story", style: TextStyle(
-                              color: primaryColor),),
-                          Icon(Icons.navigate_next, color: primaryColor,)
+                          Text(
+                            "Seee Full Story",
+                            style: TextStyle(color: primaryColor),
+                          ),
+                          Icon(
+                            Icons.navigate_next,
+                            color: primaryColor,
+                          )
                         ],
                       ),
                     )
                   ],
                 ),
               ),
-
             ],
           ),
         ),
@@ -123,23 +128,18 @@ class NewsFullView extends StatelessWidget {
     return DateFormat().format(date);
   }
 
-
   void _launchURL(BuildContext context) async {
     try {
       await launch(
         articles.url,
         customTabsOption: CustomTabsOption(
-          toolbarColor: Theme
-              .of(context)
-              .primaryColor,
+          toolbarColor: Theme.of(context).primaryColor,
           enableDefaultShare: true,
           enableUrlBarHiding: true,
           showPageTitle: true,
         ),
         safariVCOption: SafariViewControllerOption(
-          preferredBarTintColor: Theme
-              .of(context)
-              .primaryColor,
+          preferredBarTintColor: Theme.of(context).primaryColor,
           preferredControlTintColor: Colors.white,
           barCollapsingEnabled: true,
           entersReaderIfAvailable: false,

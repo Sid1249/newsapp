@@ -30,24 +30,21 @@ class NewsTile extends StatelessWidget {
             children: [
 
               Expanded(
-                child: Container(
-                  height: 130,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(news!.source.name, style: TextStyle(
-                          fontWeight: FontWeight.bold, fontSize: 19),),
-                      SizedBox(height: 20,),
-                      Text(news!.description.toString(), maxLines: 4,),
-                      Spacer(),
-                      Align(alignment: Alignment.bottomLeft,
-                          child: Text('${timeago.format(DateTime.parse(
-                              news!.publishedAt))}', style: TextStyle(
-                              color: accentColor2,
-                              fontWeight: FontWeight.w600),))
-                    ],
-                  ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(news!.source.name, style: TextStyle(
+                        fontWeight: FontWeight.bold, fontSize: 19),),
+                    SizedBox(height: 20,),
+                    Text(news!.description.toString(), maxLines: 4,),
+                    SizedBox(height: 10,),
+                    Align(alignment: Alignment.bottomLeft,
+                        child: Text('${timeago.format(DateTime.parse(
+                            news!.publishedAt))}', style: TextStyle(
+                            color: accentColor2,
+                            fontWeight: FontWeight.w600),))
+                  ],
                 ),
               ),
 
