@@ -32,7 +32,7 @@ class NewsFullView extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                height: MediaQuery.of(context).size.height * 0.29,
+                height: 200,
                 width: MediaQuery.of(context).size.width,
                 child: Stack(
                   children: [
